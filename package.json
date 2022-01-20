@@ -1,0 +1,26 @@
+{
+  "name": "kooben-back",
+  "version": "0.0.1",
+  "description": "Contains the backend of the Kooben project.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/RafaMtz2021/kooben-back.git"
+  },
+  "keywords": [
+    "kooben",
+    "nutriapp"
+  ],
+  "author": "Balan,Martinez,Mora",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RafaMtz2021/kooben-back/issues"
+  },
+  "homepage": "https://github.com/RafaMtz2021/kooben-back#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
