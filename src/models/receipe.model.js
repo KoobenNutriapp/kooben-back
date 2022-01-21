@@ -28,12 +28,27 @@ const receipeSchema = new mongoose.Schema({
       required:true,
       maxlength: 4,
     },
-    procedure: {
-      type: String,
-      minlength:20,
-      maxlength:5000,
-      required: true,
-    },
+    steps: [
+      {
+        sequence: {
+          type: Number,
+          required: true,
+          max:1000,
+        },
+        text: {
+          type: String,
+          minlength: 5,
+          maxlength: 10000,
+          required: true,
+        },
+        url: {
+          type: String,
+          minlength: 10,
+          maxlength: 500,
+          required: true,
+        },
+      }
+     ],
     author: {
       type: String,
       minlength:10,
