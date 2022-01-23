@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const receipeSchema = new mongoose.Schema({
+const recipeSchema = new mongoose.Schema({
     status: {
         type: Boolean,
         default: true,
@@ -222,6 +222,6 @@ const receipeSchema = new mongoose.Schema({
      ],
 });
 
-const Receipe = mongoose.model('receipe', receipeSchema);
+const Recipe = mongoose.model('recipe', recipeSchema);
 
-module.exports = Receipe;
+module.exports = Recipe;
