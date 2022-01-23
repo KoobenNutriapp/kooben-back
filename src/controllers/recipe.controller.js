@@ -9,7 +9,7 @@ async function createRecipe(request,response) {
       response.statusCode = 201
       response.json({
           success: true,
-          message: 'Recipe succesfully created',
+          message: 'Recipe succesfully created!',
           data: {
               recipe: newRecipe,
           }
