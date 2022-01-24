@@ -5,7 +5,7 @@ const logger = require('../middlewares/logger')
 const server = express()
 
 
-const errorController = require('./controllers/error');
+const errorController = require('../controllers/error');
 //Middleware
 // server.use(cors({
 // 	origin:'*'
@@ -19,6 +19,6 @@ server.use(logger)
 server.use('/recipe',recipe)
 
 // 404 - NOT- FOUND
-app.use(errorController.get404);
+server.use(errorController.get404);
 
 module.exports = server
