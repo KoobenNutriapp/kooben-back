@@ -6,4 +6,6 @@ const router = express.Router()
 
 router.post('/',controller.createRecipe)
 
+router.get('/',controller.getAllRecipes)
+
 module.exports = router
