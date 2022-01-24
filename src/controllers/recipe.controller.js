@@ -28,12 +28,30 @@ async function createRecipe(request,response) {
 async function getAllRecipes(request,response) {
     try {
         const allRecipes = await recipe.getAllRecipes()
+        const type = request.query.type
+        const search = request.query.search
+
+
+        let filteredRecipes = null
+
+        if(type === "prehispanic"){
+            filteredRecipes = allRecipes.filter((recipe) => recipe.type.includes('prehispanic'))
+        }else{
+            filteredRecipes = allRecipes
+        }
+
+        if(search){
+            filteredRecipes = allRecipes.filter((recipe) => recipe.title.includes(search))
+        }else{
+            filteredRecipes = allRecipes
+        }
+        
         response.statusCode = 200
         response.json({
             success: true,
             message: 'All recipes',
             data: {
-                recipes: allRecipes,
+                recipes: filteredRecipes,
             }
         })
     } catch (error) {
