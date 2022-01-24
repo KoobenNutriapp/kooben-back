@@ -5,5 +5,6 @@ const controller = require('../controllers/recipe.controller')
 const router = express.Router()
 
 router.post('/',controller.createRecipe)
-router.patch('/update-recipe',controller.updateRecipe)
+
+router.patch('/edit-recipe/:recipeID',controller.updateRecipe)
 module.exports = router
