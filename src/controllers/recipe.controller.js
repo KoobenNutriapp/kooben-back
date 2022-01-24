@@ -1,4 +1,5 @@
 const recipe = require('../usecases/recipe.usecase')
+const Recipe = require('../models/recipe.model')
 
 
 async function createRecipe(request,response) {
@@ -24,6 +25,38 @@ async function createRecipe(request,response) {
       })
   }
 }
+
+async function updateRecipe(request, response, next){
+    console.log('entro a update recipe')
+    const recipeId = request.body.recipeId;
+    const updatedURL= request.body.url;
+    const updatedTags = request.body.tags;
+    const updatedAuthor = request.body.author;
+    
+    Updatedrecipe = {}
+    Recipe.findById(recipeId)
+      .then(recipe => {
+        console.log('----------')
+        console.log(recipe)
+        recipe.title = updatedURL;
+        recipe.price = updatedTags;
+        recipe.author = updatedAuthor;
+        Updatedrecipe = recipe;
+        return recipe.save();
+      })
+      .then(result => {
+        console.log('UPDATED PRODUCT!');
+        response.statusCode = 200
+        response.json({
+            success: true,
+            message: 'Recipe succesfully UPDATED!',
+            data: {
+                recipe: Updatedrecipe,
+                }
+            })
+        })
+      .catch(err => console.log(err));
+  };
 
 async function getAllRecipes(request,response) {
     try {
@@ -68,4 +101,5 @@ async function getAllRecipes(request,response) {
 module.exports = {
     createRecipe,
     getAllRecipes,
+    updateRecipe,
 }

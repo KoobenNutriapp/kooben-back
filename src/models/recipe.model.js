@@ -51,7 +51,7 @@ const recipeSchema = new mongoose.Schema({
   //  ],
   author: {
     type: String,
-    minlength: 10,
+    minlength: 5,
     maxlength: 200,
     required: true,
   },
