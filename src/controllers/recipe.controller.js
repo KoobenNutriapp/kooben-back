@@ -89,16 +89,19 @@ async function updateRecipe(request, response, next){
 
 
 async function getRecipeById(request, response){
+    console.log('hola')
     console.log(request.query);
+    console.log(request.params.id)
     try{
         const idRecipe = request.params.id;
 
         const getRecipeById = await recipe.getRecipeById(idRecipe);
+        console.log(getRecipeById)
         response.json({
             success: true,
             message: idRecipe,
             data: {
-                post: getRecipeById,
+                 getRecipeById,
             }
         })
     }catch(error){
