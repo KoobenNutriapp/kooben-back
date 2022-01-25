@@ -1,5 +1,6 @@
 const recipe = require('../usecases/recipe.usecase')
-const Recipe = require('../models/recipe.model')
+const Recipe = require('../models/recipe.model');
+const { response } = require('express');
 
 
 async function createRecipe(request,response) {
@@ -25,6 +26,8 @@ async function createRecipe(request,response) {
       })
   }
 }
+
+
 
 async function updateRecipe(request, response, next){
     console.log('entro a update recipe')
@@ -83,6 +86,31 @@ async function updateRecipe(request, response, next){
       .catch(err => console.log(err));
       */
   };
+
+
+async function getRecipeById(request, response){
+    console.log(request.query);
+    try{
+        const idRecipe = request.params.id;
+
+        const getRecipeById = await recipe.getRecipeById(idRecipe);
+        response.json({
+            success: true,
+            message: idRecipe,
+            data{
+                post: getRecipeById,
+            }
+        })
+    }catch(error){
+        console.error(error);
+        response.statusCode = 500;
+        response.json({
+            success: false,
+            message: 'Could not get recipe.',
+            error
+        })
+    }
+}
 
 async function getAllRecipes(request,response) {
     try {
