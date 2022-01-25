@@ -17,9 +17,14 @@ async function getRecipeById(id){
   return await Recipe.findById(id)
 }
 
+async function deleteRecipe(id){
+  return await Recipe.findByIdAndRemove(id)
+}
+
 module.exports = {
     createRecipe,
     getAllRecipes,
     updateRecipe,
-    getRecipeById
+    getRecipeById,
+    deleteRecipe
 }

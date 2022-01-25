@@ -126,8 +126,25 @@ async function getAllRecipes(request,response) {
     }
   }
 
+async function deleteRecipe(request,response){
+
+    const recipeId = request.body.recipeId;
+    try {
+
+        await recipe.deleteRecipe(recipeId)
+        response.json({
+            success: true,
+            message: 'Recipe succesfully DELETED!'
+            })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
     createRecipe,
     getAllRecipes,
     updateRecipe,
+    deleteRecipe
 }
