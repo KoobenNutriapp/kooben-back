@@ -4,8 +4,10 @@ const Recipe = require('../models/recipe.model')
 
 async function createRecipe(request,response) {
     console.log(request.query);
+    console.log(request.body);
   try {
-      const newRecipe = request.query
+      //const newRecipe = request.query
+      const newRecipe = request.body
       const createRecipe = await recipe.createRecipe(newRecipe)
       response.statusCode = 201
       response.json({
