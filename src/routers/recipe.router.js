@@ -9,6 +9,9 @@ router.post('/',controller.createRecipe)
 
 router.get('/',controller.getAllRecipes)
 
+router.get('/:id',controller.getRecipeById)
+
 router.patch('/edit-recipe/:recipeID',controller.updateRecipe)
+
 
 module.exports = router

@@ -97,7 +97,7 @@ async function getRecipeById(request, response){
         response.json({
             success: true,
             message: idRecipe,
-            data{
+            data: {
                 post: getRecipeById,
             }
         })
@@ -107,10 +107,10 @@ async function getRecipeById(request, response){
         response.json({
             success: false,
             message: 'Could not get recipe.',
-            error
-        })
-    }
-}
+            error,
+        });
+    };
+};
 
 async function getAllRecipes(request,response) {
     try {
@@ -155,5 +155,6 @@ async function getAllRecipes(request,response) {
 module.exports = {
     createRecipe,
     getAllRecipes,
+    getRecipeById,
     updateRecipe,
 }
