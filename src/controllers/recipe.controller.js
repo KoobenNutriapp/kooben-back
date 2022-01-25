@@ -1,13 +1,9 @@
 const recipe = require('../usecases/recipe.usecase')
-const Recipe = require('../models/recipe.model');
-const { response } = require('express');
-
 
 async function createRecipe(request,response) {
     console.log(request.query);
     console.log(request.body);
   try {
-      //const newRecipe = request.query
       const newRecipe = request.body
       const createRecipe = await recipe.createRecipe(newRecipe)
       response.statusCode = 201
@@ -28,8 +24,6 @@ async function createRecipe(request,response) {
       })
   }
 }
-
-
 
 async function updateRecipe(request, response, next){
     console.log('entro a update recipe')
@@ -120,23 +114,74 @@ async function getRecipeById(request, response){
 async function getAllRecipes(request,response) {
     try {
         const allRecipes = await recipe.getAllRecipes()
+
         const type = request.query.type
-        const search = request.query.search
-
-
+        const search = request.query.search?.toLowerCase()
+        const low_sodium = request.query.low_sodium
+        const low_cholesterol = request.query.low_cholesterol
+        const low_carbohydrates = request.query.low_carbohydrates
+        const low_glycemic_load = request.query.low_glycemic_load
+        const low_fat = request.query.low_fat
+        const high_proteins = request.query.high_proteins
+        const FACTOR_SODIUM = 115
+        const FACTOR_CHOLESTEROL = 10
+        const FACTOR_CARBOHYDRATES = 12
+        const FACTOR_GLYCEMIC_LOAD = 5
+        const FACTOR_FAT = 25
+        const FACTOR_PROTEINS = 15
+        
         let filteredRecipes = null
+        
+        console.log('search: ' + search);
+
+        if(search){
+            filteredRecipes = allRecipes.filter((recipe) => recipe.title.toLowerCase().includes(search))
+            console.log('free_search: ' + filteredRecipes.length);
+        }
 
         if(type === "prehispanic"){
             filteredRecipes = allRecipes.filter((recipe) => recipe.type.includes('prehispanic'))
-        }else{
-            filteredRecipes = allRecipes
+            console.log('prehispanic: ' + filteredRecipes.length);
         }
 
-        if(search){
-            filteredRecipes = allRecipes.filter((recipe) => recipe.title.includes(search))
-        }else{
-            filteredRecipes = allRecipes
+        if(low_sodium){
+            const dataToFilter = filteredRecipes ?? allRecipes
+            filteredRecipes = dataToFilter.filter((recipe) => recipe.total_sodium.quantity < FACTOR_SODIUM)
+            console.log('low sodium: ' + filteredRecipes.length);
         }
+
+        if(low_cholesterol){
+            const dataToFilter = filteredRecipes ?? allRecipes
+            filteredRecipes = dataToFilter.filter((recipe) => recipe.total_cholesterol.quantity < FACTOR_CHOLESTEROL)
+            console.log('low cholesterol: ' + filteredRecipes.length);
+        }
+
+        if(low_carbohydrates){
+            const dataToFilter = filteredRecipes ?? allRecipes
+            filteredRecipes = dataToFilter.filter((recipe) => recipe.total_carbohydrate.quantity < FACTOR_CARBOHYDRATES)
+            console.log('low carbohydrates: ' + filteredRecipes.length);
+        }
+
+        if(low_glycemic_load){
+            const dataToFilter = filteredRecipes ?? allRecipes
+            filteredRecipes = dataToFilter.filter((recipe) => recipe.total_glycemic_load.quantity < FACTOR_GLYCEMIC_LOAD)
+            console.log('low_glycemic_load: ' + filteredRecipes.length);
+        }
+
+        if(low_fat){
+            const dataToFilter = filteredRecipes ?? allRecipes
+            filteredRecipes = dataToFilter.filter((recipe) => recipe.total_fat.quantity < FACTOR_FAT)
+            console.log('low_fat: ' + filteredRecipes.length);
+        }
+
+        if(high_proteins){
+            const dataToFilter = filteredRecipes ?? allRecipes
+            filteredRecipes = dataToFilter.filter((recipe) => recipe.total_protein.quantity > FACTOR_PROTEINS)
+            console.log('high_proteins: ' + filteredRecipes.length);
+        }
+
+
+        if(filteredRecipes === null) filteredRecipes = allRecipes
         
         response.statusCode = 200
         response.json({

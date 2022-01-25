@@ -14,7 +14,6 @@ const ingredientSchema = new mongoose.Schema({
     alias: {
         type: Array,
         required:true,
-        maxlength: 10,
     },
     url: {
       type: String,
