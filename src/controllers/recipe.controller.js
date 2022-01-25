@@ -28,12 +28,37 @@ async function createRecipe(request,response) {
 
 async function updateRecipe(request, response, next){
     console.log('entro a update recipe')
-    const recipeId = request.body.recipeId;
-    const updatedURL= request.body.url;
-    const updatedTags = request.body.tags;
-    const updatedAuthor = request.body.author;
     
     Updatedrecipe = {}
+    try {
+        const recipeId = request.body.recipeId;
+        const updatedURL= request.body.url;
+        const updatedTags = request.body.tags;
+        const updatedAuthor = request.body.author;
+        
+
+        const recipe2 = await recipe.getRecipeById(recipeId)
+        recipe2.title = updatedURL;
+        recipe2.price = updatedTags;
+        recipe2.author = updatedAuthor;
+        Updatedrecipe = recipe2;
+        const editRecipe = await recipe.updateRecipe(recipeId,Updatedrecipe)
+
+        response.statusCode = 200
+        response.json({
+            success: true,
+            message: 'Recipe succesfully UPDATED!',
+            data: {
+                recipe: Updatedrecipe,
+                }
+            })
+    } catch (error) {
+        console.log(error)
+    }
+    
+    /* UPDTADING USING THEN */
+
+    /*
     Recipe.findById(recipeId)
       .then(recipe => {
         console.log('----------')
@@ -56,6 +81,7 @@ async function updateRecipe(request, response, next){
             })
         })
       .catch(err => console.log(err));
+      */
   };
 
 async function getAllRecipes(request,response) {
