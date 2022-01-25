@@ -9,12 +9,17 @@ async function getAllRecipes() {
   return allRecipes
 }
 
-async function updateRecipe(recipe) {
-  const creatRecipe = await Recipe.updateOne(recipe)
+async function updateRecipe(id,recipe) {
+  return await Recipe.updateOne({_id: id},recipe)
+}
+
+async function getRecipeById(id){
+  return await Recipe.findById(id)
 }
 
 module.exports = {
     createRecipe,
     getAllRecipes,
-    updateRecipe
+    updateRecipe,
+    getRecipeById
 }
