@@ -5,8 +5,10 @@ const { response } = require('express');
 
 async function createRecipe(request,response) {
     console.log(request.query);
+    console.log(request.body);
   try {
-      const newRecipe = request.query
+      //const newRecipe = request.query
+      const newRecipe = request.body
       const createRecipe = await recipe.createRecipe(newRecipe)
       response.statusCode = 201
       response.json({
@@ -155,9 +157,26 @@ async function getAllRecipes(request,response) {
     }
   }
 
+async function deleteRecipe(request,response){
+
+    const recipeId = request.body.recipeId;
+    try {
+
+        await recipe.deleteRecipe(recipeId)
+        response.json({
+            success: true,
+            message: 'Recipe succesfully DELETED!'
+            })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
     createRecipe,
     getAllRecipes,
     getRecipeById,
     updateRecipe,
+    deleteRecipe
 }
