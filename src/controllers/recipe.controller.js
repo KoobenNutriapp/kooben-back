@@ -181,7 +181,10 @@ async function getAllRecipes(request,response) {
         }
 
 
-        if(filteredRecipes === null) filteredRecipes = allRecipes
+        if(filteredRecipes === null) {
+            filteredRecipes = allRecipes
+            console.log('all_recipes: ' + filteredRecipes.length);
+        }
         
         response.statusCode = 200
         response.json({
