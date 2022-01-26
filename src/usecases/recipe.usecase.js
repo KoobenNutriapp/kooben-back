@@ -1,7 +1,7 @@
 const Recipe = require ('../models/recipe.model')
 
 async function createRecipe(recipe) {
-  const creatRecipe = await Recipe.create(recipe)
+  const createRecipe = await Recipe.create(recipe)
 }
 
 async function getAllRecipes() {
