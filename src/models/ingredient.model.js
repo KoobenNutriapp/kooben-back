@@ -7,14 +7,13 @@ const ingredientSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        minlength:10,
+        minlength:2,
         maxlength:100,
         required: true,
     },
     alias: {
         type: Array,
         required:true,
-        maxlength: 10,
     },
     url: {
       type: String,

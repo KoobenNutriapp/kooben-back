@@ -1,7 +1,7 @@
 const Recipe = require ('../models/recipe.model')
 
 async function createRecipe(recipe) {
-  const creatRecipe = await Recipe.create(recipe)
+  const createRecipe = await Recipe.create(recipe)
 }
 
 async function getAllRecipes() {
@@ -18,7 +18,7 @@ async function getRecipeById(id){
 }
 
 async function deleteRecipe(id){
-  return await Recipe.findByIdAndRemove(id)
+  const deleteRecipe = await Recipe.findByIdAndRemove(id)
 }
 
 module.exports = {
