@@ -17,7 +17,7 @@ server.use(logger)
 
 
 //Routes
-server.get('/',(req,res)=>res.send('Bienvenido a kobeen Rafa,Balan, Mora'))
+server.get('/',(req,res)=>res.send('Bienvenido a kobeen Rafa,Balan, Mora, Paco'))
 server.use('/recipe',recipe)
 server.use('/ingredient',ingredient)
 server.use('/payment',payment)
