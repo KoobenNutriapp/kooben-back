@@ -9,6 +9,7 @@ function filterByParams(request, recipes) {
   const low_glycemic_load = request.query.low_glycemic_load;
   const low_fat = request.query.low_fat;
   const high_proteins = request.query.high_proteins;
+  const low_calories = request.query.low_calories;
 
   let filteredRecipes = null;
 
@@ -26,6 +27,14 @@ function filterByParams(request, recipes) {
       recipe.type.includes("prehispanic")
     );
     console.log("prehispanic: " + filteredRecipes.length);
+  }
+
+  if (low_calories) {
+    const dataToFilter = filteredRecipes ?? recipes;
+    filteredRecipes = dataToFilter.filter(
+      (recipe) => recipe.total_energy.quantity < constants.FACTOR_CALORIES
+    );
+    console.log("low_calories: " + filteredRecipes.length);
   }
 
   if (low_sodium) {
