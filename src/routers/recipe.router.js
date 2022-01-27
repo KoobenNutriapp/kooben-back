@@ -6,9 +6,12 @@ const router = express.Router()
 
 router.post('/',controller.createRecipe)
 
-
 router.get('/',controller.getAllRecipes)
 
+router.get('/:id',controller.getRecipeById)
+
 router.patch('/edit-recipe/:recipeID',controller.updateRecipe)
+
+router.delete('/delete',controller.deleteRecipe)
 
 module.exports = router
