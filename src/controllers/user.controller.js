@@ -47,6 +47,32 @@ async function getAllUsers(request,response) {
     }
   }
 
+  async function updateUser(request, response) {
+    try {
+      const id = request.params.id;
+      const newData = request.body
+      
+      const editUser = await user.updateUser(id, newData);
+  
+      response.statusCode = 200;
+      response.json({
+        success: true,
+        message: "User succesfully updated!",
+        data: {
+          recipe: editUser,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      response.statusCode = 500;
+      response.json({
+        success: false,
+        message: "Could not update user",
+        error,
+      });
+    }
+  }
+
   async function getUserById(request, response){
 
     const id = request.params.id
@@ -99,4 +125,5 @@ module.exports = {
   getAllUsers,
   getUserById,
   deleteUser,
+  updateUser,
 }

@@ -10,7 +10,9 @@ router.get('/',controller.getAllRecipes)
 
 router.get('/:id',controller.getRecipeById)
 
-router.patch('/edit-recipe/:recipeID',controller.updateRecipe)
+// router.patch('/edit-recipe/:recipeID',controller.updateRecipe)
+
+router.patch('/:id',controller.updateRecipe)
 
 router.delete('/delete',controller.deleteRecipe)
 
