@@ -9,6 +9,10 @@ async function getAllIngredients() {
   return allIngredients
 }
 
+async function updateIngredient(id,ingredient) {
+  return await Ingredient.updateOne({_id: id},ingredient)
+}
+
 async function getIngredientById(id){
   return await Ingredient.findById(id)
 }
@@ -22,4 +26,5 @@ module.exports = {
     getAllIngredients,
     getIngredientById,
     deleteIngredient,
+    updateIngredient,
 }

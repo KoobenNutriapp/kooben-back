@@ -64,6 +64,32 @@ async function getAllIngredients(request,response) {
     }
   }
 
+  async function updateIngredient(request, response) {
+    try {
+      const id = request.params.id;
+      const newData = request.body
+      
+      const editIngredient = await ingredient.updateIngredient(id, newData);
+  
+      response.statusCode = 200;
+      response.json({
+        success: true,
+        message: "Ingredient succesfully updated!",
+        data: {
+          recipe: editIngredient,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      response.statusCode = 500;
+      response.json({
+        success: false,
+        message: "Could not update ingredient",
+        error,
+      });
+    }
+  }
+
   async function getIngredientById(request, response){
 
     const id = request.params.id
@@ -116,4 +142,5 @@ module.exports = {
   getAllIngredients,
   getIngredientById,
   deleteIngredient,
+  updateIngredient,
 }

@@ -26,29 +26,55 @@ async function createRecipe(request, response) {
   }
 }
 
+// async function updateRecipe(request, response) {
+//   console.log("entro a update recipe");
+
+//   let updatedRecipe = {};
+//   try {
+//     const recipeId = request.body.recipeId;
+//     const updatedURL = request.body.url;
+//     const updatedTags = request.body.tags;
+//     const updatedAuthor = request.body.author;
+
+//     const recipe2 = await recipe.getRecipeById(recipeId);
+//     recipe2.title = updatedURL;
+//     recipe2.price = updatedTags;
+//     recipe2.author = updatedAuthor;
+//     updatedRecipe = recipe2;
+//     const editRecipe = await recipe.updateRecipe(recipeId, updatedRecipe);
+
+//     response.statusCode = 200;
+//     response.json({
+//       success: true,
+//       message: "Recipe succesfully updated!",
+//       data: {
+//         recipe: updatedRecipe,
+//       },
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     response.statusCode = 500;
+//     response.json({
+//       success: false,
+//       message: "Could not update recipe",
+//       error,
+//     });
+//   }
+// }
+
 async function updateRecipe(request, response) {
-  console.log("entro a update recipe");
-
-  let updatedRecipe = {};
   try {
-    const recipeId = request.body.recipeId;
-    const updatedURL = request.body.url;
-    const updatedTags = request.body.tags;
-    const updatedAuthor = request.body.author;
-
-    const recipe2 = await recipe.getRecipeById(recipeId);
-    recipe2.title = updatedURL;
-    recipe2.price = updatedTags;
-    recipe2.author = updatedAuthor;
-    updatedRecipe = recipe2;
-    const editRecipe = await recipe.updateRecipe(recipeId, updatedRecipe);
+    const id = request.params.id;
+    const newData = request.body
+    
+    const editRecipe = await recipe.updateRecipe(id, newData);
 
     response.statusCode = 200;
     response.json({
       success: true,
       message: "Recipe succesfully updated!",
       data: {
-        recipe: updatedRecipe,
+        recipe: editRecipe,
       },
     });
   } catch (error) {
@@ -63,16 +89,13 @@ async function updateRecipe(request, response) {
 }
 
 async function getRecipeById(request, response) {
-  console.log("hola");
-  console.log(request.query);
-  console.log(request.params.id);
   try {
-    const idRecipe = request.params.id;
-    const getRecipeById = await recipe.getRecipeById(idRecipe);
-    console.log(getRecipeById);
+    const id = request.params.id;
+    const getRecipeById = await recipe.getRecipeById(id);
+   
     response.json({
       success: true,
-      message: idRecipe,
+      message: id,
       data: {
         getRecipeById,
       },

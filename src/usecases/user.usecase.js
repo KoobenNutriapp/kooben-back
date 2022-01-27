@@ -9,6 +9,10 @@ async function getAllUsers() {
   return getAllUsers
 }
 
+async function updateUser(id,user) {
+  return await User.updateOne({_id: id},user)
+}
+
 async function getUserById(id){
   return await User.findById(id)
 }
@@ -22,4 +26,5 @@ module.exports = {
   getAllUsers,
   getUserById,
   deleteUser,
+  updateUser,
 }

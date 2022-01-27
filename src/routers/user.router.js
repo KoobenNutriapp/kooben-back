@@ -10,6 +10,8 @@ router.get('/',controller.getAllUsers)
 
 router.get('/:id',controller.getUserById)
 
+router.patch('/:id',controller.updateUser)
+
 router.delete('/:id',controller.deleteUser)
 
 module.exports = router
