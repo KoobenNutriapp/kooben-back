@@ -6,4 +6,6 @@ const router = express.Router()
 
 router.post('/checkout',controller.checkout)
 
+router.post('/webhook',controller.webhook)
+
 module.exports = router
