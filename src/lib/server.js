@@ -16,6 +16,7 @@ server.use(logger)
 
 
 //Routes
+server.get('/',(req,res)=>res.send('Bienvenido a kobeen'))
 server.use('/recipe',recipe)
 
 // 404 - NOT- FOUND

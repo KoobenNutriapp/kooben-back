@@ -2,9 +2,9 @@
   "name": "kooben-back",
   "version": "0.0.1",
   "description": "Contains the backend of the Kooben project.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
