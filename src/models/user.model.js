@@ -33,6 +33,36 @@ const userSchema = new mongoose.Schema({
       maxlength:20,
       required: true,
     },
+    type: {
+      type: String,
+      minlength:3,
+      maxlength:20,
+      required: false,
+    },
+    stripeCustomer:{
+      id: {
+        type: String,
+        minlength:3,
+        maxlength:30,
+        required: false,
+      },
+      active: {
+        type: Boolean,
+        default: false
+      },
+      apiKey: {
+        type: String,
+        minlength:3,
+        maxlength:30,
+        required: false,
+      },
+      itemId: {
+        type: String,
+        minlength:3,
+        maxlength:20,
+        required: false,
+      },
+    }
 });
 
 const User = mongoose.model('user', userSchema);
