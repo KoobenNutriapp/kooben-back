@@ -16,10 +16,47 @@ function filterByParams(request, recipes) {
   console.log("search: " + search);
 
   if (search) {
-    filteredRecipes = recipes.filter((recipe) =>
+    const searchInTitle = recipes.filter((recipe) =>
       recipe.title.toLowerCase().includes(search)
     );
+    //console.log('searchInTitle: ' + searchInTitle);
+
+    const searchInType = recipes.filter((recipe) =>
+      recipe.type.toLowerCase().includes(search)
+    );
+    //console.log('searchInType: ' + searchInType);
+
+    const searchInSteps = recipes.filter((recipe) => {
+      return recipe.steps.some((step) => {
+        return step.text.toLowerCase().includes(search);
+      });
+    });
+    //console.log('searchInSteps: ' + searchInSteps);
+
+    const searchInTags = recipes.filter((recipe) => {
+      return recipe.tags.some((tags) => {
+        return tags.toLowerCase().includes(search);
+      });
+    });
+    //console.log('searchInTags: ' + searchInTags.length);
+
+    const joinSearches = [
+      ...searchInTitle,
+      ...searchInType,
+      ...searchInTags,
+      ...searchInSteps,
+    ]
+    //console.log('joinSearches: ' + joinSearches);
+
+    const filteredRecipes = joinSearches.reduce((acc,recipe)=>{
+      if(!acc.includes(recipe)){
+      	acc.push(recipe);
+      }
+      return acc;
+    },[])
+
     console.log("free_search: " + filteredRecipes.length);
+    return filteredRecipes
   }
 
   if (type === "prehispanic") {
