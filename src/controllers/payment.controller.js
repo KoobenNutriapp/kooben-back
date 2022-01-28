@@ -15,8 +15,8 @@ async function checkout(request,response){
             // the actual Session ID is returned in the query parameter when your customer
             // is redirected to the success page.
             success_url:
-              'http://localhost:80/dashboard?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url: 'http://localhost:80/error',
+              'http://localhost:8080/dashboard?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url: 'http://localhost:8080/error',
           });
         
         response.statusCode = 201
@@ -30,7 +30,7 @@ async function checkout(request,response){
         response.statusCode = 500
         response.json({
             success: false,
-            message: 'Could not update recipe',
+            message: 'Could not create session',
             error,
         })
     }
@@ -41,7 +41,7 @@ async function webhook(request,response){
         let data;
         let eventType;
         // Check if webhook signing is configured.
-        const webhookSecret = 'whsec_YOUR-KEY';
+        const webhookSecret = process.env.WEBHOOK_SECRET;
 
         if (webhookSecret) {
             // Retrieve the event by verifying the signature using the raw body and secret.
