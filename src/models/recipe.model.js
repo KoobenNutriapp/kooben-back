@@ -20,6 +20,12 @@ const recipeSchema = new mongoose.Schema({
     maxlength: 200,
     required: true,
   },
+  synopsis: {
+    type: String,
+    minlength: 5,
+    maxlength: 1000,
+    required: true,
+  },
   tags: {
     type: Array,
     required: true,

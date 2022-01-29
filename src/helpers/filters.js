@@ -17,24 +17,29 @@ function filterByParams(request, recipes) {
 
   if (search) {
     const searchInTitle = recipes.filter((recipe) =>
-      recipe.title.toLowerCase().includes(search)
+      recipe.title?.toLowerCase().includes(search)
     );
     //console.log('searchInTitle: ' + searchInTitle);
 
+    const searchInSynopsis = recipes.filter((recipe) =>
+      recipe.synopsis?.toLowerCase().includes(search)
+    );
+  //console.log('searchInSynopsis: ' + searchInSynopsis);
+
     const searchInType = recipes.filter((recipe) =>
-      recipe.type.toLowerCase().includes(search)
+      recipe.type?.toLowerCase().includes(search)
     );
     //console.log('searchInType: ' + searchInType);
 
     const searchInSteps = recipes.filter((recipe) => {
-      return recipe.steps.some((step) => {
-        return step.text.toLowerCase().includes(search);
+      return recipe.steps?.some((step) => {
+        return step.text?.toLowerCase().includes(search);
       });
     });
     //console.log('searchInSteps: ' + searchInSteps);
 
     const searchInTags = recipes.filter((recipe) => {
-      return recipe.tags.some((tags) => {
+      return recipe.tags?.some((tags) => {
         return tags.toLowerCase().includes(search);
       });
     });
@@ -42,6 +47,7 @@ function filterByParams(request, recipes) {
 
     const joinSearches = [
       ...searchInTitle,
+      ...searchInSynopsis,
       ...searchInType,
       ...searchInTags,
       ...searchInSteps,
