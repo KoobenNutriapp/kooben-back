@@ -1,6 +1,23 @@
 require('dotenv').config();
 const stripe = require('stripe')(process.env.API_KEY_PAYMENTS);
 
+////// Data Model ///////
+
+// TODO Implement a real database
+// Reverse mapping of stripe to API key. Model this in your preferred database.
+const customers = {
+    // stripeCustomerId : data
+    stripeCustomerId: {
+      apiKey: '123xyz',
+      active: false,
+      itemId: 'stripeSubscriptionItemId',
+    },
+  };
+  const apiKeys = {
+    // apiKey : customerdata
+    '123xyz': 'stripeCustomerId',
+  };
+
 async function checkout(request,response){
     try {
         const session = await stripe.checkout.sessions.create({
@@ -15,7 +32,7 @@ async function checkout(request,response){
             // the actual Session ID is returned in the query parameter when your customer
             // is redirected to the success page.
             success_url:
-              'http://localhost:8080/dashboard?session_id={CHECKOUT_SESSION_ID}',
+              'http://localhost:8080/?session_id={CHECKOUT_SESSION_ID}',
             cancel_url: 'http://localhost:8080/error',
           });
         
@@ -35,6 +52,29 @@ async function checkout(request,response){
         })
     }
 }
+
+// Recursive function to generate a unique random string as API key
+function generateAPIKey() {
+    const { randomBytes } = require('crypto');
+    const apiKey = randomBytes(16).toString('hex');
+    const hashedAPIKey = hashAPIKey(apiKey);
+  
+    // Ensure API key is unique
+    if (apiKeys[hashedAPIKey]) {
+      generateAPIKey();
+    } else {
+      return { hashedAPIKey, apiKey };
+    }
+  }
+
+// Hash the API key
+function hashAPIKey(apiKey) {
+    const { createHash } = require('crypto');
+  
+    const hashedAPIKey = createHash('sha256').update(apiKey).digest('hex');
+  
+    return hashedAPIKey;
+  }
 
 async function webhook(request,response){
     try {
