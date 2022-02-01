@@ -122,7 +122,7 @@ async function webhook(req,res){
             // Get the subscription. The first item is the plan the user subscribed to.
             const subscription = await stripe.subscriptions.retrieve(subscriptionId);
             const itemId = subscription.items.data[0].id;
-
+            console.log(subscription)
             // Generate API key
             console.log('GENERATE KEYS')
             const { apiKey, hashedAPIKey } = generateAPIKey();
@@ -130,12 +130,12 @@ async function webhook(req,res){
             console.log(`Hashed API Key: ${hashedAPIKey}`);
 
             // Store the API key in your database.
-            customers[customerId] = {
-                apikey: hashedAPIKey,
-                itemId,
-                active: true,
-            };
-            apiKeys[hashedAPIKey] = customerId;
+            // customers[customerId] = {
+            //     apikey: hashedAPIKey,
+            //     itemId,
+            //     active: true,
+            // };
+            // apiKeys[hashedAPIKey] = customerId;
 
             try {
                 newUser = {
