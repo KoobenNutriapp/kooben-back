@@ -4,14 +4,14 @@ const ingredient = require('../routers/ingredient.router')
 const payment = require('../routers/payment.router')
 const logger = require('../middlewares/logger')
 const user = require('../routers/user.router')
-//const cors = require('cors')
+const cors = require('cors')
 const server = express()
 
 const errorController = require('../controllers/error');
 //Middleware
-// server.use(cors({
-// 	origin:'*'
-// }))
+server.use(cors({
+	origin:'*'
+}))
 
 server.use(express.json())
 server.use(logger)
