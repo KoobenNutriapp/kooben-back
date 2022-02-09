@@ -50,453 +50,179 @@ const ingredientSchema = new mongoose.Schema({
         },
     },
     energy: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     total_carbohydrate: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     dietary_fiber: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     sugars: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     calcium: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     phosphorus: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     iron: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     sodium: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     potassium: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     magnesium: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     copper: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     zinc: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     manganese: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     selenium: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     lithium: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     vitA: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     carotene : {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     bcarotene: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     vitB1: {
-      quantity: {
         type: Number,
         required: true,
         max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
     },
     vitB2: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     vitB3: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     vitB6: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     vitB12: {
-      quantity: {
         type: Number,
         required: true,
         max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
     },
     vitC: {
-      quantity: {
         type: Number,
         required: true,
         max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
     },
     folicAc: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     vitD: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     vitE: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     vitK: {
-      quantity: {
         type: Number,
         required: true,
         max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
     },
     protein: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     total_fat: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     saturated_fatty_acids: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     monounsaturated_fatty_acids: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     polyunsaturated_fatty_acids: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     cholesterol: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
-      unit: {
-        type: String,
-        minlength: 1,
-        maxlength: 10,
-        required: true,
-      }
+      type: Number,
+      required: true,
+      max: 100000,
     },
     glycemic_index: {
-      quantity: {
-        type: Number,
-        required: true,
-        max: 100000,
-      },
+      type: Number,
+      required: true,
+      max: 100000,
     },
 });
 
