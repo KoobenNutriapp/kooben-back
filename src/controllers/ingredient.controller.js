@@ -27,31 +27,29 @@ async function getAllIngredients(request,response) {
     try {
         const allIngredients = await ingredient.getAllIngredients()
 
-        const search = request.query.search?.toLowerCase();
-        let filteredIngredients = null;
+        // const search = request.query.search?.toLowerCase();
+        // let filteredIngredients = null;
       
-        console.log("search: " + search);
+        // console.log("search: " + search);
       
-        if (search) {
-            filteredIngredients = allIngredients.filter((ingredient) => {
-                return ingredient.name.toLowerCase().includes(search)
-            });
+        // if (search) {
+        //     filteredIngredients = allIngredients.filter((ingredient) => {
+        //         return ingredient.name.toLowerCase().includes(search)
+        //     });
 
-          console.log("free_search: " + filteredIngredients.length);
-        }
+        //   console.log("free_search: " + filteredIngredients.length);
+        // }
       
-        if (filteredIngredients === null) {
-            filteredIngredients = allIngredients;
-            console.log("all_ingredients: " + filteredIngredients.length);
-        }
+        // if (filteredIngredients === null) {
+        //     filteredIngredients = allIngredients;
+        //     console.log("all_ingredients: " + filteredIngredients.length);
+        // }
 
         response.statusCode = 200
         response.json({
             success: true,
             message: 'Ingredients',
-            data: {
-                ingredients: filteredIngredients,
-            }
+            ingredients: allIngredients,
         })
     } catch (error) {
         console.error(error);

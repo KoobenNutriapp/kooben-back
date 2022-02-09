@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+    id: {
+      type: String,
+      minlength:3,
+      maxlength:50,
+      required: true,
+    },
     name: {
       type: String,
       minlength:3,
@@ -17,27 +23,11 @@ const userSchema = new mongoose.Schema({
       maxlength:100,
       required: true,
     },
-    recipes: {
-      type: Array,
-      required:true,
-      maxlength: 1000,
-    },
-    likes: {
-      type: Array,
-      required:true,
-      maxlength: 1000,
-    },
     rol: {
       type: String,
       minlength:2,
       maxlength:20,
       required: true,
-    },
-    type: {
-      type: String,
-      minlength:3,
-      maxlength:20,
-      required: false,
     },
     stripeCustomer:{
       id: {
