@@ -5,7 +5,7 @@ async function createIngredient(ingredient) {
 }
 
 async function getAllIngredients() {
-  const allIngredients = await Ingredient.find().select('name')
+  const allIngredients = await Ingredient.find()
   return allIngredients
 }
 

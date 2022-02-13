@@ -9,13 +9,14 @@ const stripe = require('stripe')(process.env.API_KEY_PAYMENTS);
 const bodyParser = require('body-parser');
 const stripeKey = require("../usecases/apiKey.usecase");
 //const cors = require('cors')
+const cors = require('cors')
 const server = express()
 
 const errorController = require('../controllers/error');
 //Middleware
-// server.use(cors({
-// 	origin:'*'
-// }))
+server.use(cors({
+	origin:'*'
+}))
 
 server.use(express.json())
 server.use(logger)
@@ -89,7 +90,7 @@ server.all('*', async (req, res, next) => {
   });
 
 //Routes
-server.get('/',(req,res)=>res.send('Bienvenido a Kooben Rafa,Balan, Mora, Paco'))
+server.get('/',(req,res)=>res.send('Bienvenido a Kooben Balan, David, Mora, Oscar, Rafa'))
 server.use('/recipe',recipe)
 server.use('/ingredient',ingredient)
 server.use('/payment',payment)

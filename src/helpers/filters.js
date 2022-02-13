@@ -16,10 +16,53 @@ function filterByParams(request, recipes) {
   console.log("search: " + search);
 
   if (search) {
-    filteredRecipes = recipes.filter((recipe) =>
-      recipe.title.toLowerCase().includes(search)
+    const searchInTitle = recipes.filter((recipe) =>
+      recipe.title?.toLowerCase().includes(search)
     );
+    //console.log('searchInTitle: ' + searchInTitle);
+
+    const searchInSynopsis = recipes.filter((recipe) =>
+      recipe.synopsis?.toLowerCase().includes(search)
+    );
+  //console.log('searchInSynopsis: ' + searchInSynopsis);
+
+    const searchInType = recipes.filter((recipe) =>
+      recipe.type?.toLowerCase().includes(search)
+    );
+    //console.log('searchInType: ' + searchInType);
+
+    const searchInSteps = recipes.filter((recipe) => {
+      return recipe.steps?.some((step) => {
+        return step.text?.toLowerCase().includes(search);
+      });
+    });
+    //console.log('searchInSteps: ' + searchInSteps);
+
+    const searchInTags = recipes.filter((recipe) => {
+      return recipe.tags?.some((tags) => {
+        return tags.toLowerCase().includes(search);
+      });
+    });
+    //console.log('searchInTags: ' + searchInTags.length);
+
+    const joinSearches = [
+      ...searchInTitle,
+      ...searchInSynopsis,
+      ...searchInType,
+      ...searchInTags,
+      ...searchInSteps,
+    ]
+    //console.log('joinSearches: ' + joinSearches);
+
+    const filteredRecipes = joinSearches.reduce((acc,recipe)=>{
+      if(!acc.includes(recipe)){
+      	acc.push(recipe);
+      }
+      return acc;
+    },[])
+
     console.log("free_search: " + filteredRecipes.length);
+    return filteredRecipes
   }
 
   if (type === "prehispanic") {
@@ -32,7 +75,7 @@ function filterByParams(request, recipes) {
   if (low_calories) {
     const dataToFilter = filteredRecipes ?? recipes;
     filteredRecipes = dataToFilter.filter(
-      (recipe) => recipe.total_energy.quantity < constants.FACTOR_CALORIES
+      (recipe) => recipe.total_energy < constants.FACTOR_CALORIES
     );
     console.log("low_calories: " + filteredRecipes.length);
   }
@@ -40,7 +83,7 @@ function filterByParams(request, recipes) {
   if (low_sodium) {
     const dataToFilter = filteredRecipes ?? recipes;
     filteredRecipes = dataToFilter.filter(
-      (recipe) => recipe.total_sodium.quantity < constants.FACTOR_SODIUM
+      (recipe) => recipe.total_sodium < constants.FACTOR_SODIUM
     );
     console.log("low sodium: " + filteredRecipes.length);
   }
@@ -49,7 +92,7 @@ function filterByParams(request, recipes) {
     const dataToFilter = filteredRecipes ?? recipes;
     filteredRecipes = dataToFilter.filter(
       (recipe) =>
-        recipe.total_cholesterol.quantity < constants.FACTOR_CHOLESTEROL
+        recipe.total_cholesterol < constants.FACTOR_CHOLESTEROL
     );
     console.log("low cholesterol: " + filteredRecipes.length);
   }
@@ -58,7 +101,7 @@ function filterByParams(request, recipes) {
     const dataToFilter = filteredRecipes ?? recipes;
     filteredRecipes = dataToFilter.filter(
       (recipe) =>
-        recipe.total_carbohydrate.quantity < constants.FACTOR_CARBOHYDRATES
+        recipe.total_carbohydrate < constants.FACTOR_CARBOHYDRATES
     );
     console.log("low carbohydrates: " + filteredRecipes.length);
   }
@@ -67,7 +110,7 @@ function filterByParams(request, recipes) {
     const dataToFilter = filteredRecipes ?? recipes;
     filteredRecipes = dataToFilter.filter(
       (recipe) =>
-        recipe.total_glycemic_load.quantity < constants.FACTOR_GLYCEMIC_LOAD
+        recipe.total_glycemic_load < constants.FACTOR_GLYCEMIC_LOAD
     );
     console.log("low_glycemic_load: " + filteredRecipes.length);
   }
@@ -75,7 +118,7 @@ function filterByParams(request, recipes) {
   if (low_fat) {
     const dataToFilter = filteredRecipes ?? recipes;
     filteredRecipes = dataToFilter.filter(
-      (recipe) => recipe.total_fat.quantity < constants.FACTOR_FAT
+      (recipe) => recipe.total_fat < constants.FACTOR_FAT
     );
     console.log("low_fat: " + filteredRecipes.length);
   }
@@ -83,7 +126,7 @@ function filterByParams(request, recipes) {
   if (high_proteins) {
     const dataToFilter = filteredRecipes ?? recipes;
     filteredRecipes = dataToFilter.filter(
-      (recipe) => recipe.total_protein.quantity > constants.FACTOR_PROTEINS
+      (recipe) => recipe.total_protein > constants.FACTOR_PROTEINS
     );
     console.log("high_proteins: " + filteredRecipes.length);
   }

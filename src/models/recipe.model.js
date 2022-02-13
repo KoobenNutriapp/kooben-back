@@ -20,6 +20,12 @@ const recipeSchema = new mongoose.Schema({
     maxlength: 200,
     required: true,
   },
+  synopsis: {
+    type: String,
+    minlength: 5,
+    maxlength: 1000,
+    required: true,
+  },
   tags: {
     type: Array,
     required: true,
@@ -53,115 +59,49 @@ const recipeSchema = new mongoose.Schema({
     required: true,
   },
   total_energy: {
-    quantity: {
       type: Number,
       required: true,
       max: 100000,
-    },
-    unit: {
-      type: String,
-      minlength: 1,
-      maxlength: 10,
-      required: true,
-    }
   },
   total_carbohydrate: {
-    quantity: {
       type: Number,
       required: true,
       max: 100000,
-    },
-    unit: {
-      type: String,
-      minlength: 1,
-      maxlength: 10,
-      required: true,
-    }
   },
   total_sugars: {
-    quantity: {
       type: Number,
       required: true,
       max: 100000,
-    },
-    unit: {
-      type: String,
-      minlength: 1,
-      maxlength: 10,
-      required: true,
-    }
   },
   total_fiber: {
-    quantity: {
       type: Number,
       required: true,
       max: 100000,
-    },
-    unit: {
-      type: String,
-      minlength: 1,
-      maxlength: 10,
-      required: true,
-    }
   },
   total_sodium: {
-    quantity: {
       type: Number,
       required: true,
       max: 100000,
-    },
-    unit: {
-      type: String,
-      minlength: 1,
-      maxlength: 10,
-      required: true,
-    }
   },
   total_protein: {
-    quantity: {
       type: Number,
       required: true,
       max: 100000,
-    },
-    unit: {
-      type: String,
-      minlength: 1,
-      maxlength: 10,
-      required: true,
-    }
   },
   total_fat: {
-    quantity: {
       type: Number,
       required: true,
       max: 100000,
-    },
-    unit: {
-      type: String,
-      minlength: 1,
-      maxlength: 10,
-      required: true,
-    }
   },
   total_cholesterol: {
-    quantity: {
       type: Number,
       required: true,
       max: 100000,
-    },
-    unit: {
-      type: String,
-      minlength: 1,
-      maxlength: 10,
-      required: true,
-    }
   },
   total_glycemic_load: {
-    quantity: {
       type: Number,
       required: true,
       max: 100000,
-    },
   },
   created: {
     type: String,
@@ -174,16 +114,6 @@ const recipeSchema = new mongoose.Schema({
     minlength: 16,
     maxlength: 16,
     required: true,
-  },
-  likes: {
-    type: Number,
-    //required: true,
-    max: 1000000,
-  },
-  ids_of_likes: {
-    type: Array,
-    //required:true,
-    maxlength: 1000000,
   },
   ingredients: [
     {
