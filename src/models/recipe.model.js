@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const recipeSchema = new mongoose.Schema({
-  status: {
-    type: Boolean,
-    default: true,
-  },
   url: {
     type: String,
     minlength: 10,
@@ -31,13 +27,8 @@ const recipeSchema = new mongoose.Schema({
     required: true,
     maxlength: 4,
   },
-  steps: [
+  procedures: [
     {
-      sequence: {
-        type: Number,
-        required: true,
-        max:1000,
-      },
       text: {
         type: String,
         minlength: 5,
