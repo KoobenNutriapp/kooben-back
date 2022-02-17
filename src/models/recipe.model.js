@@ -153,16 +153,7 @@ const recipeSchema = new mongoose.Schema({
       selenium: {
         type: Number,
       },
-      lithium: {
-        type: Number,
-      },
       vitA: {
-        type: Number,
-      },
-      carotene: {
-        type: Number,
-      },
-      bcarotene: {
         type: Number,
       },
       vitB1: {

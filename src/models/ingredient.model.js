@@ -15,12 +15,6 @@ const ingredientSchema = new mongoose.Schema({
         type: Array,
         required:true,
     },
-    url: {
-      type: String,
-      minlength:10,
-      maxlength:500,
-      required: true,
-    },
     consistency: {
       type: String,
       minlength:1,
@@ -119,22 +113,7 @@ const ingredientSchema = new mongoose.Schema({
       required: true,
       max: 100000,
     },
-    lithium: {
-      type: Number,
-      required: true,
-      max: 100000,
-    },
     vitA: {
-      type: Number,
-      required: true,
-      max: 100000,
-    },
-    carotene : {
-      type: Number,
-      required: true,
-      max: 100000,
-    },
-    bcarotene: {
       type: Number,
       required: true,
       max: 100000,
