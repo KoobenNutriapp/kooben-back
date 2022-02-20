@@ -52,6 +52,7 @@ function filterByParams(request, recipes) {
       ...searchInTags,
       ...searchInSteps,
     ]
+    
     //console.log('joinSearches: ' + joinSearches);
 
     const filteredRecipes = joinSearches.reduce((acc,recipe)=>{
