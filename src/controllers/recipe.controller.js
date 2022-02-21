@@ -100,9 +100,10 @@ async function getAllRecipes(request, response) {
 }
 
 async function deleteRecipe(request, response) {
-  const recipeId = request.body.recipeId;
+  const id = request.params.id;
+  console.log(id);
   try {
-    await recipe.deleteRecipe(recipeId);
+    await recipe.deleteRecipe(id);
 
     response.statusCode = 200;
     response.json({
