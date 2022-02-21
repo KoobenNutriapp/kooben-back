@@ -55,8 +55,9 @@ server.use('/stripe',payment)
 server.all('*', async (req, res, next) => {
     // const { apiKey } = req.query;
     console.log('Validacion de token')
-    console.log(req.headers)
+    // console.log(req.headers)
     const apiKey = req.headers['X-API-KEY'] ? req.headers['X-API-KEY'] : req.headers['x-api-key'] // better option for storing API keys
+    console.log(apiKey)
     if (!apiKey) {
         res.statusCode = 400
         res.json({
@@ -65,15 +66,19 @@ server.all('*', async (req, res, next) => {
         })
     }
     // check if accouunt is active
-    const hashedAPIKey = hashAPIKey(apiKey);
+    const hashedAPIKey =  hashAPIKey(apiKey);
+    console.log('hashedAPIKey')
+    console.log(hashedAPIKey)
+    console.log('GetCustomerID')
     const customerId = await stripeKey.getCustomerID(hashedAPIKey)
-
+    console.log(customerId)
     if (!customerId) {
       res.sendStatus(403); // not authorized
     } else {
     
         // get user
         const customer = await User.getUserById(customerId)
+        console.log('Customer')
         console.log(customer)
         // Record usage with Stripe Billing
         const record = await stripe.subscriptionItems.createUsageRecord(

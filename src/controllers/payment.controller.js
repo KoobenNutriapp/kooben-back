@@ -21,13 +21,14 @@ const customers = {
   };
 
 async function checkout(request,response){
+    // price_1KMXZcArpXm7B0HUJcKKVElx
     try {
         const session = await stripe.checkout.sessions.create({
             mode: 'subscription',
             payment_method_types: ['card'],
             line_items: [
               {
-                price: 'price_1KMXZcArpXm7B0HUJcKKVElx',
+                price: 'price_1KVb7RAqezYdKBDldz2x4rpV',
               },
             ],
             // {CHECKOUT_SESSION_ID} is a string literal; do not change it!
@@ -102,11 +103,21 @@ async function webhook(req,res){
 
     // Handle the event
     let newUser = {}
+    let email = 'notCreated@test.com'
+    let idCustomer = '1234'
     switch (event.type) {
         case 'customer.subscription.created':
             console.log('-------customer.subscription.created-------');
             console.log(event.data)
 
+        break;
+        case 'customer.created':
+            console.log('-------customer.created-------');
+            console.log(event.data)
+            email = event.data.object.email;
+            idCustomer = event.data.object.id
+            console.log('------EMAIL------------------')
+            console.log(email)
         break;
         case 'checkout.session.completed':
             console.log('---------checkout.session.completed------------');
@@ -139,9 +150,10 @@ async function webhook(req,res){
 
             try {
                 newUser = {
+                    'id': idCustomer,
                     'name': 'toChange',
                     'status':true,
-                    'mail': 'someMail',
+                    'mail': email,
                     'recipes': [''],
                     'likes': [''],
                     'rol': 'somRol',
