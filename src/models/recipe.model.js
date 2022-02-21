@@ -25,8 +25,8 @@ const recipeSchema = new mongoose.Schema({
     maxlength: 4,
   },
   procedures: {
-    type: Array,
-    maxlength: 50,
+    type: String,
+    maxlength: 10000,
   },
   author: {
     type: String,

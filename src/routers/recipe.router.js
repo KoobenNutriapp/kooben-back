@@ -14,6 +14,6 @@ router.get('/:id',controller.getRecipeById)
 
 router.patch('/:id',controller.updateRecipe)
 
-router.delete('/delete',controller.deleteRecipe)
+router.delete('/:id',controller.deleteRecipe)
 
 module.exports = router
