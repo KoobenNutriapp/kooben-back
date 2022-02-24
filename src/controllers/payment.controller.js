@@ -2,6 +2,7 @@ require('dotenv').config();
 const stripe = require('stripe')(process.env.API_KEY_PAYMENTS);
 const user = require("../usecases/user.usecase");
 const stripeKey = require("../usecases/apiKey.usecase");
+const { sendMail } = require("../services/email.service")
 
 ////// Data Model ///////
 
@@ -80,6 +81,10 @@ function hashAPIKey(apiKey) {
   }
 
 async function webhook(req,res){
+    let newUser = {}
+    let email = 'notCreated@test.com'
+    let idCustomer = '1234'
+    let name = 'toChange'
     try {
         console.log('****** WEB HOOK CONTROLLER *********')
         const payload = req.body
@@ -102,9 +107,6 @@ async function webhook(req,res){
         }
 
     // Handle the event
-    let newUser = {}
-    let email = 'notCreated@test.com'
-    let idCustomer = '1234'
     switch (event.type) {
         case 'customer.subscription.created':
             console.log('-------customer.subscription.created-------');
@@ -114,6 +116,7 @@ async function webhook(req,res){
         case 'customer.created':
             console.log('-------customer.created-------');
             console.log(event.data)
+            name =  event.data.object.name
             email = event.data.object.email;
             idCustomer = event.data.object.id
             console.log('------EMAIL------------------')
@@ -132,10 +135,14 @@ async function webhook(req,res){
 
             // Get the subscription. The first item is the plan the user subscribed to.
             const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+            const customer = await stripe.customers.retrieve(customerId);
+            console.log('--------CUSTOMER-INFO--------------')
+            // console.log(customer)
             const itemId = subscription.items.data[0].id;
-            console.log(subscription)
+            console.log('--------CUSTOMER-SUBSCRIPTION--------------')
+            // console.log(subscription)
             // Generate API key
-            console.log('GENERATE KEYS')
+            console.log('--------CUSTOMER-KEYS--------------')
             const { apiKey, hashedAPIKey } = generateAPIKey();
             console.log(`User's API Key: ${apiKey}`);
             console.log(`Hashed API Key: ${hashedAPIKey}`);
@@ -150,10 +157,10 @@ async function webhook(req,res){
 
             try {
                 newUser = {
-                    'id': idCustomer,
-                    'name': 'toChange',
+                    'id': customerId,
+                    'name': customer.name,
                     'status':true,
-                    'mail': email,
+                    'mail': customer.email,
                     'recipes': [''],
                     'likes': [''],
                     'rol': 'somRol',
@@ -169,6 +176,8 @@ async function webhook(req,res){
                 console.log('---USER CREATED------');
                 console.log(createdUser)
                 const createApiKeys = await stripeKey.saveApiKey({'apikey':createdUser.stripeCustomer.apiKey,'customerID':createdUser._id});
+                const mailResponse = await sendMail(apiKey,newUser)
+                console.log('[MAIL RESPONSE]: ' + mailResponse)
                 console.log(createApiKeys)
             } catch (error) {
                 console.error(error);
