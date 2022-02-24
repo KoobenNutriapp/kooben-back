@@ -56,24 +56,32 @@ server.all('*', async (req, res, next) => {
     // const { apiKey } = req.query;
     console.log('Validacion de token')
     // console.log(req.headers)
-    const apiKey = req.headers['X-API-KEY'] ? req.headers['X-API-KEY'] : req.headers['x-api-key'] // better option for storing API keys
-    console.log(apiKey)
-    if (!apiKey) {
+    // let apiKey = 'true'
+    let customerId = 'none'
+    const apiKey = req.headers['x-api-key'] ? req.headers['x-api-key'] : 'false' // better option for storing API keys
+    console.log(apiKey + " == " + 'false')
+    if (apiKey === 'false') {
         res.statusCode = 400
         res.json({
             success: false,
             message: 'Missing api key'
         })
+        return
     }
-    // check if accouunt is active
-    const hashedAPIKey =  hashAPIKey(apiKey);
-    console.log('hashedAPIKey')
-    console.log(hashedAPIKey)
-    console.log('GetCustomerID')
-    const customerId = await stripeKey.getCustomerID(hashedAPIKey)
-    console.log(customerId)
-    if (!customerId) {
+    if(apiKey != 'false'){
+      // check if accouunt is active
+      console.log('Checking hashed API')
+      const hashedAPIKey =  hashAPIKey(apiKey);
+      console.log('hashedAPIKey')
+      console.log(hashedAPIKey)
+      console.log('GetCustomerID')
+      customerId = await stripeKey.getCustomerID(hashedAPIKey)
+      console.log(customerId)
+    }
+    
+    if (customerId === 'none') {
       res.sendStatus(403); // not authorized
+      return
     } else {
     
         // get user

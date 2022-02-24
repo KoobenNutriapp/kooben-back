@@ -29,19 +29,19 @@ async function getKeys(){
 async function getCustomerID(apikey){
   // console.log(ApiKey.findOne({ 'socialHandles.github': 'vkarpov15' }))
   console.log('searching: apiKey')
-  console.log(apikey)
+  // console.log(apikey)
   const apiKeys = await getKeys()
   let res = {};
   apiKeys.forEach((item)=>{
     const key = new ApiKey(item)
     console.log('searching: ')
-    console.log(key)
-    console.log(key.socialHandles + " == " + apikey)
+    // console.log(key)
+    // console.log(key.socialHandles + " == " + apikey)
     if(key.socialHandles.get(apikey)){
       console.log('Encontrado')
-      console.log(item)
+      // console.log(item)
       res = key.socialHandles.get(apikey)
-      console.log(key.socialHandles.get(apikey))
+      // console.log(key.socialHandles.get(apikey))
     }
   })
   return res
