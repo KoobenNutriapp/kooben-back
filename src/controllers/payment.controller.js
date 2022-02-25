@@ -37,7 +37,7 @@ async function checkout(request,response){
             // is redirected to the success page.
             success_url:
               'https://koo-ben.com/?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url: 'https://koo-ben.com/error',
+            cancel_url: 'https://koo-ben.com',
           });
         
         response.statusCode = 201

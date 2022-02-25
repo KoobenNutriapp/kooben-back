@@ -27,9 +27,14 @@ const sendMail =(createdApiKey, user)=>{
             Body: { /* required */
                 Html: {
                     Charset: "UTF-8",
-                    Data: `<h1>Heeello ${user.name}</h1> 
-                    your api keys:  ${createdApiKey}\n
-                    customerId: ${user.id}`
+                    Data: `<h1>Hoola ${user.name}</h1> 
+
+                    Tu Api keys:  ${createdApiKey}\n
+                    customerId: ${user.id}\n
+                    Documentación: https://dev-kobenn.s3.amazonaws.com/TamemeRecipes.postman_collection.json.zip
+                    Turotial: https://www.loom.com/share/96cca8b41dc5406fa1c80fd8b2d8fa93
+                    
+                    `
                     
                 }
             },
@@ -59,7 +64,7 @@ const sendMail =(createdApiKey, user)=>{
 }
 
 
-// sendMail('someKey','koobenkod@gmail.com')
+sendMail('someKey',{mail : 'koobenkod@gmail.com',id:'1232', name:'test'})
 
 module.exports = {
     sendMail
