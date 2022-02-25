@@ -1,6 +1,5 @@
 require('dotenv').config();
-const stripe = require('stripe')(process.env.API_KEY_PAYMENTS);
-// price_1KMXZcArpXm7B0HUJcKKVElx
+
 const dbConnect = require('./src/lib/db')
 const port = process.env.PORT || '8080'
 

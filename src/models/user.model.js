@@ -43,13 +43,13 @@ const userSchema = new mongoose.Schema({
       apiKey: {
         type: String,
         minlength:3,
-        maxlength:30,
+        maxlength:90,
         required: false,
       },
       itemId: {
         type: String,
         minlength:3,
-        maxlength:20,
+        maxlength:25,
         required: false,
       },
     }
