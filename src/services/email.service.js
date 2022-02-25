@@ -64,7 +64,7 @@ const sendMail =(createdApiKey, user)=>{
 }
 
 
-sendMail('someKey',{mail : 'koobenkod@gmail.com',id:'1232', name:'test'})
+// sendMail('someKey',{mail : 'koobenkod@gmail.com',id:'1232', name:'test'})
 
 module.exports = {
     sendMail
